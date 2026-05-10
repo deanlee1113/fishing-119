@@ -7,8 +7,8 @@
 
 ## 서비스
 
-- 🔮 [행운의 출조](https://lucky-fishing.netlify.app/) — 자미두수로 보는 오늘의 출조 운세
-- 📹 [낚시캠](https://fishing-cam.netlify.app/) — 전국 CCTV · 날씨 · 수위
+- 🔮 [출조일 운세](https://lucky-fishing.deanlee1113.workers.dev/) — 자미두수로 보는 오늘의 출조 운세
+- 📹 [낚시캠](https://fishing-cam.deanlee1113.workers.dev/) — 전국 CCTV · 날씨 · 수위
 
 ## 새 서비스 추가하기
 
