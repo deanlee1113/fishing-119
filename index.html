@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피싱119 — 출조 전, 필요한 모든 것</title>
+<meta name="description" content="낚시 도우미 서비스를 한 곳에서. 출조 운세부터 실시간 CCTV·날씨·수위까지.">
+<meta property="og:title" content="피싱119">
+<meta property="og:description" content="출조 전, 필요한 모든 것 — 낚시 도우미 서비스 허브">
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --primary: #0369A1;
+    --primary-hover: #075985;
+    --accent: #F59E0B;
+    --text: #0F172A;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
+    --shadow-hover: 0 10px 25px rgba(15,23,42,0.10), 0 4px 10px rgba(15,23,42,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .logo .num { color: var(--accent); }
+
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  }
+  .hero-emoji { font-size: 56px; margin-bottom: 16px; }
+  .hero h1 {
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .services { padding: 40px 0 80px; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+  }
+  .card-icon { font-size: 36px; margin-bottom: 16px; }
+  .card-name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  .card:hover .card-cta { color: var(--primary-hover); }
+  .card-cta-arrow { transition: transform 0.2s ease; }
+  .card:hover .card-cta-arrow { transform: translateX(3px); }
+
+  .card.coming {
+    background: transparent;
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    color: var(--muted);
+    cursor: default;
+  }
+  .card.coming:hover {
+    transform: none;
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .card.coming .card-icon { opacity: 0.6; }
+
+  .badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+  }
+
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  footer p + p { margin-top: 4px; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 50px 0 30px; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 24px; min-height: auto; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">🎣 피싱<span class="num">119</span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-emoji">🌅</div>
+      <h1>출조 전, 필요한 모든 것</h1>
+      <p>낚시 도우미 서비스를 한 곳에서.<br>출조 운세부터 실시간 CCTV·날씨·수위까지.</p>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="container">
+      <div class="section-title">서비스</div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>🎣 피싱119 — 낚시인을 위한 작은 도구상자</p>
+      <p>취미로 만든 비영리 사이트입니다.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 새 서비스를 추가할 때는 이 배열에 객체 한 개만 추가하면 카드가 자동 생성됩니다.
+    // status: "live" | "beta" | "coming-soon"
+    const services = [
+      {
+        id: "lucky-fishing",
+        name: "행운의 출조",
+        description: "자미두수로 보는 오늘의 출조 운세",
+        icon: "🔮",
+        url: "https://lucky-fishing.netlify.app/",
+        category: "운세",
+        status: "live"
+      },
+      {
+        id: "fishing-cam",
+        name: "낚시캠",
+        description: "전국 CCTV · 날씨 · 수위 한눈에",
+        icon: "📹",
+        url: "https://fishing-cam.netlify.app/",
+        category: "환경정보",
+        status: "live"
+      },
+      {
+        id: "coming-soon",
+        name: "Coming Soon",
+        description: "새로운 도구가 추가될 예정입니다",
+        icon: "➕",
+        url: null,
+        category: null,
+        status: "coming-soon"
+      }
+    ];
+
+    function renderCard(s) {
+      if (s.status === "coming-soon") {
+        return `<div class="card coming">
+          <div class="card-icon">${s.icon}</div>
+          <div class="card-name">${s.name}</div>
+          <div class="card-desc">${s.description}</div>
+        </div>`;
+      }
+      const badge = s.status === "beta" ? '<span class="badge">BETA</span>' : '';
+      return `<a class="card" href="${s.url}" target="_blank" rel="noopener">
+        ${badge}
+        <div class="card-icon">${s.icon}</div>
+        <div class="card-name">${s.name}</div>
+        <div class="card-desc">${s.description}</div>
+        <div class="card-cta">이용하기 <span class="card-cta-arrow">→</span></div>
+      </a>`;
+    }
+
+    document.getElementById('grid').innerHTML = services.map(renderCard).join('');
+  </script>
+</body>
+</html>
