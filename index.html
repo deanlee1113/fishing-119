@@ -6,232 +6,400 @@
 <title>피싱119 — 출조 전, 필요한 모든 것</title>
 <meta name="description" content="낚시 도우미 서비스를 한 곳에서. 출조 운세부터 실시간 CCTV·날씨·수위까지.">
 <meta property="og:title" content="피싱119">
-<meta property="og:description" content="출조 전, 필요한 모든 것 — 낚시 도우미 서비스 허브">
+<meta property="og:description" content="출조 전, 필요한 모든 것 — 낚시 도우미 통합 허브">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
 <style>
   :root {
-    --bg: #F8FAFC;
+    --bg: #FAFBFC;
     --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
     --primary: #0369A1;
+    --primary-soft: #E0F2FE;
     --primary-hover: #075985;
     --accent: #F59E0B;
     --text: #0F172A;
+    --text-2: #334155;
     --muted: #64748B;
     --border: #E2E8F0;
-    --shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
-    --shadow-hover: 0 10px 25px rgba(15,23,42,0.10), 0 4px 10px rgba(15,23,42,0.06);
+    --radius: 16px;
+    --radius-lg: 24px;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+    --shadow-hover: 0 25px 50px -12px rgba(3,105,161,0.20);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  a { color: inherit; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
+  /* Header */
   header {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    background: rgba(250,251,252,0.75);
+    border-bottom: 1px solid rgba(226,232,240,0.6);
+    padding: 14px 0;
   }
   .header-inner { display: flex; align-items: center; justify-content: space-between; }
   .logo {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+  }
+  .logo-mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--primary) 0%, #0EA5E9 100%);
+    border-radius: 10px; font-size: 17px;
+    box-shadow: 0 4px 12px rgba(3,105,161,0.25);
   }
   .logo .num { color: var(--accent); }
 
+  /* Hero */
   .hero {
-    padding: 80px 0 60px;
+    position: relative;
+    padding: 96px 0 80px;
     text-align: center;
-    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    overflow: hidden;
   }
-  .hero-emoji { font-size: 56px; margin-bottom: 16px; }
+  .hero::before {
+    content: ''; position: absolute; inset: -20% -20% auto -20%;
+    height: 700px; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(at 20% 30%, rgba(3,105,161,0.14), transparent 50%),
+      radial-gradient(at 80% 20%, rgba(245,158,11,0.10), transparent 50%),
+      radial-gradient(at 50% 80%, rgba(14,165,233,0.10), transparent 50%);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(255,255,255,0.7); border: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; color: var(--text-2);
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-eyebrow .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #16A34A;
+    box-shadow: 0 0 0 0 rgba(22,163,74,0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(22,163,74,0); }
+    100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  }
   .hero h1 {
-    font-size: clamp(30px, 5vw, 46px);
+    font-size: clamp(36px, 6vw, 60px);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-    line-height: 1.2;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 22px;
   }
-  .hero p {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 540px;
-    margin: 0 auto;
+  .hero h1 .grad {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--text-2);
+    max-width: 560px;
+    margin: 0 auto 36px;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+  }
+  .stat-num {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.02em; color: var(--text);
+  }
+  .stat-label {
+    font-size: 11px; color: var(--muted); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px;
   }
 
-  .services { padding: 40px 0 80px; }
-  .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
+  /* Sections */
+  .section { padding: 56px 0; }
+  .section-head { margin-bottom: 32px; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; color: var(--primary);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
   }
+  .section-title {
+    font-size: clamp(24px, 3.5vw, 32px); font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .section-sub { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* Cards */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
   }
   .card {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    display: flex; flex-direction: column;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     padding: 28px;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    position: relative;
+    text-decoration: none; color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
+                box-shadow 0.3s cubic-bezier(0.4,0,0.2,1),
+                border-color 0.3s ease;
+    min-height: 240px;
     overflow: hidden;
-    min-height: 200px;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   }
   .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-hover);
-    border-color: var(--primary);
+    border-color: rgba(3,105,161,0.2);
   }
-  .card-icon { font-size: 36px; margin-bottom: 16px; }
+  .card:hover::before { transform: scaleX(1); }
+  .card-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px;
+    background: var(--primary-soft);
+    border-radius: 14px;
+    font-size: 28px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+  .card:hover .card-icon { transform: scale(1.06) rotate(-4deg); }
   .card-name {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
     margin-bottom: 8px;
   }
   .card-desc {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 20px;
-    flex: 1;
+    color: var(--muted); font-size: 14px; line-height: 1.6;
+    margin-bottom: 22px; flex: 1;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
   }
   .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--primary);
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; font-weight: 600; color: var(--primary);
   }
-  .card:hover .card-cta { color: var(--primary-hover); }
-  .card-cta-arrow { transition: transform 0.2s ease; }
-  .card:hover .card-cta-arrow { transform: translateX(3px); }
+  .card-cta-arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px;
+    background: var(--primary-soft); border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  .card:hover .card-cta-arrow {
+    background: var(--primary); color: white; transform: translateX(4px);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    background: rgba(22,163,74,0.10); color: #16A34A;
+  }
+  .badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #16A34A;
+  }
+  .badge.beta { background: rgba(245,158,11,0.12); color: #B45309; }
+  .badge.beta .dot { background: #F59E0B; }
 
   .card.coming {
     background: transparent;
     border: 2px dashed var(--border);
     box-shadow: none;
-    color: var(--muted);
-    cursor: default;
   }
+  .card.coming::before { display: none; }
   .card.coming:hover {
-    transform: none;
-    border-color: var(--primary);
-    color: var(--primary);
+    transform: none; border-color: var(--primary); box-shadow: none;
   }
-  .card.coming .card-icon { opacity: 0.6; }
+  .card.coming .card-icon { background: var(--surface-2); color: var(--muted); }
+  .card.coming:hover .card-icon { transform: none; }
 
-  .badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: var(--accent);
+  /* Contact section */
+  .contact-card {
+    margin-top: 24px;
+    padding: 56px 40px;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+    border-radius: var(--radius-lg);
+    text-align: center;
     color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: ''; position: absolute;
+    top: -150px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(245,158,11,0.18), transparent 60%);
+    pointer-events: none;
+  }
+  .contact-card::after {
+    content: ''; position: absolute;
+    bottom: -150px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(14,165,233,0.18), transparent 60%);
+    pointer-events: none;
+  }
+  .contact-eyebrow {
+    display: inline-block;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .contact-card h2 {
+    font-size: clamp(24px, 3.5vw, 32px); font-weight: 800;
+    letter-spacing: -0.03em; margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .contact-card p {
+    color: rgba(255,255,255,0.75);
+    max-width: 460px; margin: 0 auto 28px;
+    font-size: 15px;
+    position: relative; z-index: 1;
+  }
+  .threads-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    background: white; color: #0F172A;
+    text-decoration: none; font-weight: 600; font-size: 15px;
     border-radius: 999px;
-    letter-spacing: 0.04em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+    position: relative; z-index: 1;
   }
+  .threads-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.30);
+  }
+  .threads-btn svg { width: 20px; height: 20px; }
+  .threads-handle { color: var(--muted); font-weight: 500; font-size: 14px; }
 
-  .contact {
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-    margin-left: 4px;
-  }
-  .contact-link:hover { color: var(--primary-hover); text-decoration: underline; }
-  .contact-platform {
-    color: var(--muted);
-    font-size: 12px;
-    margin-left: 4px;
-  }
-
+  /* Footer */
   footer {
-    padding: 32px 0;
-    border-top: 1px solid var(--border);
+    padding: 40px 0 60px;
     text-align: center;
     color: var(--muted);
     font-size: 13px;
   }
-  footer p + p { margin-top: 4px; }
+  footer .brand {
+    font-weight: 700; color: var(--text-2); margin-bottom: 4px;
+    font-size: 14px;
+  }
 
+  /* Animations */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > .container > * { animation: fadeUp 0.7s ease backwards; }
+    .hero > .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero > .container > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero > .container > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero > .container > *:nth-child(4) { animation-delay: 0.35s; }
+    .card { animation: fadeUp 0.6s ease backwards; }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.18s; }
+    .card:nth-child(3) { animation-delay: 0.26s; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
   @media (max-width: 640px) {
-    .hero { padding: 50px 0 30px; }
+    .hero { padding: 64px 0 40px; }
+    .hero-stats { gap: 28px; }
+    .stat-num { font-size: 22px; }
     .grid { grid-template-columns: 1fr; }
     .card { padding: 24px; min-height: auto; }
+    .contact-card { padding: 44px 24px; margin-top: 16px; }
+    .section { padding: 40px 0; }
   }
 </style>
 </head>
 <body>
   <header>
     <div class="container header-inner">
-      <div class="logo">🎣 피싱<span class="num">119</span></div>
+      <a class="logo" href="/">
+        <span class="logo-mark">🎣</span>
+        <span>피싱<span class="num">119</span></span>
+      </a>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <div class="hero-emoji">🌅</div>
-      <h1>출조 전, 필요한 모든 것</h1>
-      <p>낚시 도우미 서비스를 한 곳에서.<br>출조 운세부터 실시간 CCTV·날씨·수위까지.</p>
+      <div class="hero-eyebrow">
+        <span class="live-dot"></span>
+        낚시 도우미 통합 허브
+      </div>
+      <h1>출조 전,<br><span class="grad">필요한 모든 것</span></h1>
+      <p class="lead">운세부터 실시간 CCTV·날씨·수위까지.<br>흩어진 도구를 한 페이지에서 만나보세요.</p>
+      <div class="hero-stats">
+        <div><div class="stat-num" id="stat-services">2</div><div class="stat-label">서비스</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-label">무료</div></div>
+        <div><div class="stat-num">24/7</div><div class="stat-label">운영</div></div>
+      </div>
     </div>
   </section>
 
-  <section class="services">
+  <section class="section">
     <div class="container">
-      <div class="section-title">서비스</div>
+      <div class="section-head">
+        <div class="section-eyebrow">SERVICES</div>
+        <h2 class="section-title">서비스 둘러보기</h2>
+        <div class="section-sub">카드를 누르면 새 탭에서 열립니다</div>
+      </div>
       <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-eyebrow">FEEDBACK</div>
+        <h2>의견을 들려주세요</h2>
+        <p>버그 제보, 추가하고 싶은 기능, 협업 제안 — 어떤 이야기든 환영합니다.</p>
+        <a class="threads-btn" href="https://www.threads.com/@nakmat_yeov_life" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291 1.078-.061 2.087.011 3.02.213-.124-.747-.375-1.34-.75-1.774-.513-.595-1.308-.897-2.359-.898h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71-.563-.123-1.183-.221-1.215-.221z"/>
+          </svg>
+          Threads에서 메시지 보내기
+          <span class="threads-handle">@nakmat_yeov_life</span>
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p class="contact">
-        개발자 문의 및 연락:
-        <a class="contact-link" href="https://www.threads.com/@nakmat_yeov_life" target="_blank" rel="noopener">
-          @nakmat_yeov_life
-        </a>
-        <span class="contact-platform">on Threads</span>
-      </p>
-      <p>🎣 피싱119 — 낚시인을 위한 작은 도구상자</p>
-      <p>취미로 만든 비영리 사이트입니다.</p>
+      <div class="brand">🎣 피싱119</div>
+      <div>취미로 만든 비영리 사이트입니다 · © 2026</div>
     </div>
   </footer>
 
   <script>
-    // 새 서비스를 추가할 때는 이 배열에 객체 한 개만 추가하면 카드가 자동 생성됩니다.
+    // 새 서비스 추가 시: 아래 배열에 객체 한 개만 추가하면 카드가 자동 생성됩니다.
     // status: "live" | "beta" | "coming-soon"
     const services = [
       {
         id: "lucky-fishing",
         name: "행운의 출조",
-        description: "자미두수로 보는 오늘의 출조 운세",
+        description: "자미두수로 보는 오늘의 출조 운세. 길흉 방위·시간대별 운까지 한눈에.",
         icon: "🔮",
         url: "https://lucky-fishing.netlify.app/",
         category: "운세",
@@ -240,7 +408,7 @@
       {
         id: "fishing-cam",
         name: "낚시캠",
-        description: "전국 CCTV · 날씨 · 수위 한눈에",
+        description: "전국 CCTV로 현장 상황 확인. 실시간 날씨·수위 정보까지 한 화면에.",
         icon: "📹",
         url: "https://fishing-cam.netlify.app/",
         category: "환경정보",
@@ -249,7 +417,7 @@
       {
         id: "coming-soon",
         name: "Coming Soon",
-        description: "새로운 도구가 추가될 예정입니다",
+        description: "새로운 도구가 추가될 예정입니다. 어떤 게 있으면 좋을지 의견 주세요.",
         icon: "➕",
         url: null,
         category: null,
@@ -265,17 +433,23 @@
           <div class="card-desc">${s.description}</div>
         </div>`;
       }
-      const badge = s.status === "beta" ? '<span class="badge">BETA</span>' : '';
+      const badge = s.status === "live"
+        ? '<span class="badge"><span class="dot"></span>LIVE</span>'
+        : '<span class="badge beta"><span class="dot"></span>BETA</span>';
       return `<a class="card" href="${s.url}" target="_blank" rel="noopener">
-        ${badge}
         <div class="card-icon">${s.icon}</div>
         <div class="card-name">${s.name}</div>
         <div class="card-desc">${s.description}</div>
-        <div class="card-cta">이용하기 <span class="card-cta-arrow">→</span></div>
+        <div class="card-footer">
+          ${badge}
+          <span class="card-cta">이용하기 <span class="card-cta-arrow">→</span></span>
+        </div>
       </a>`;
     }
 
     document.getElementById('grid').innerHTML = services.map(renderCard).join('');
+    const live = services.filter(s => s.status === 'live' || s.status === 'beta').length;
+    document.getElementById('stat-services').textContent = live;
   </script>
 </body>
 </html>
