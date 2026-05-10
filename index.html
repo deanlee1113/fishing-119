@@ -151,6 +151,27 @@
     letter-spacing: 0.04em;
   }
 
+  .contact {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 4px;
+  }
+  .contact-link:hover { color: var(--primary-hover); text-decoration: underline; }
+  .contact-platform {
+    color: var(--muted);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+
   footer {
     padding: 32px 0;
     border-top: 1px solid var(--border);
@@ -191,6 +212,13 @@
 
   <footer>
     <div class="container">
+      <p class="contact">
+        개발자 문의 및 연락:
+        <a class="contact-link" href="https://www.threads.com/@nakmat_yeov_life" target="_blank" rel="noopener">
+          @nakmat_yeov_life
+        </a>
+        <span class="contact-platform">on Threads</span>
+      </p>
       <p>🎣 피싱119 — 낚시인을 위한 작은 도구상자</p>
       <p>취미로 만든 비영리 사이트입니다.</p>
     </div>
